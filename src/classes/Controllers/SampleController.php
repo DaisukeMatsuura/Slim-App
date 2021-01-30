@@ -102,4 +102,25 @@ class SampleController
 
         return $response->withHeader('Location', '/')->withStatus(301);
     }
+
+    public function delete(Request $request, Response $response, $args) {
+        $id = $args['id'];
+        $target = $this->atlas->fetchRecord(Customer::class, $id);
+        $arg = [
+            'header' => 'Delete',
+            'message' => 'delete Customer. [id = ' . $id . ']',
+            'sendto' => '/delete/' . $id,
+            'target' => $target
+        ];
+
+        return $this->container->get(Twig::class)->render($response, 'add.phtml', $arg);
+    }
+
+    public function destroy(Request $request, Response $response, $args) {
+        $id = $args['id'];
+        $target = $this->atlas->fetchRecord(Customer::class, $id);
+        $this->atlas->delete($target);
+
+        return $response->withHeader('Location', '/')->withStatus(301);
+    }
 }
