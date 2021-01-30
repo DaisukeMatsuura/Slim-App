@@ -17,7 +17,7 @@ return function (ContainerBuilder $containerBuilder) {
             'twig' => [
                 'debug' => true,
                 'strict_variables' => true,
-                'cache' => __DIR__ . '/../var/cache/twig',
+                'cache' => __DIR__ . '/../templates/cache/twig',
             ],
         ],
     ]);

@@ -1,0 +1,33 @@
+{% extends 'layout.phtml' %}
+
+{% block title %} Slim {% endblock %}
+{% block header %} {{header}} {% endblock %}
+
+{% block content %}
+<div>{{ message }}</div>
+<form action="{{sendto}}" method="post">
+    <div class="form-group">
+        <label class="left">Corp</label>
+        <input type="text" name="corp" class="form-control" value="{{ target.corp }}">
+    </div>
+    <div class="form-group">
+        <label class="left">Staff</label>
+        <input type="text" name="staff" class="form-control" value="{{ target.staff }}">
+    </div>
+    <div class="form-group">
+        <label class="left">Mail</label>
+        <input type="text" name="mail" class="form-control" value="{{ target.mail }}">
+    </div>
+    <div class="form-group">
+        <label class="left">Tel</label>
+        <input type="text" name="tel" class="form-control" value="{{ target.tel }}">
+    </div>
+    <div class="form-group">
+        <label class="left">Address</label>
+        <input type="text" name="address" class="form-control" value="{{ target.address }}">
+    </div>
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary">
+    </div>
+</form>
+{% endblock %}
