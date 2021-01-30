@@ -15,5 +15,7 @@ return function (App $app) {
     $app->get('/', SampleController::class . ':index');
     $app->get('/add', SampleController::class . ':add');
     $app->post('/add', SampleController::class . ':create');
+    $app->get('/edit/{id}', SampleController::class . ':edit');
+    $app->post('/edit/{id}', SampleController::class . ':update');
 
 };

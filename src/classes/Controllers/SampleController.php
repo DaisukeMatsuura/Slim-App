@@ -75,4 +75,31 @@ class SampleController
 
         return $response->withHeader('Location', '/')->withStatus(301);
     }
+
+    public function edit(Request $request, Response $response, $args) {
+        $id = $args['id'];
+        $target = $this->atlas->fetchRecord(Customer::class, $id);
+        $arg = [
+            'header' => 'Update',
+            'message' => 'edit Customer. [id = ' . $id . ']',
+            'sendto' => '/edit/' . $id,
+            'target' => $target
+        ];
+
+        return $this->container->get(Twig::class)->render($response, 'add.phtml', $arg);
+    }
+
+    public function update(Request $request, Response $response, $args) {
+        $id = $args['id'];
+        $target = $this->atlas->fetchRecord(Customer::class, $id);
+        $body = $request->getParsedBody();
+        $target->corp = $body['corp'];
+        $target->staff = $body['staff'];
+        $target->mail = $body['mail'];
+        $target->tel = $body['tel'];
+        $target->address = $body['address'];
+        $this->atlas->update($target);
+
+        return $response->withHeader('Location', '/')->withStatus(301);
+    }
 }
