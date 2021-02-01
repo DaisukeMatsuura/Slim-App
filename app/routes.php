@@ -19,5 +19,6 @@ return function (App $app) {
     $app->post('/edit/{id}', SampleController::class . ':update');
     $app->get('/delete/{id}', SampleController::class . ':delete');
     $app->post('/delete/{id}', SampleController::class . ':destroy');
-
+    $app->get('/find', SampleController::class . ':find');
+    $app->post('/find', SampleController::class . ':search');
 };

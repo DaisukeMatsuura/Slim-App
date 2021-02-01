@@ -1,0 +1,34 @@
+{% extends 'layout.phtml' %}
+
+{% block title %} Slim {% endblock %}
+{% block header %} FInd {% endblock %}
+
+{% block content %}
+<div>find a Customer.</div>
+<form action="/find" method="post">
+    <div class="form-group">
+        <label class="left">Find</label>
+        <input type="text" name="find" class="form-control" value="{{ find }}">
+    </div>
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary">
+    </div>
+</form>
+<hr>
+<table class="table">
+    <thead>
+    <tr><th>ID</th><th>Corp</th>
+        <th>Staff</th><th>Mail</th></tr>
+    </thead>
+    <tbody>
+    {% for row in data %}
+    <tr>
+        <td>{{ row.id }} </td>
+        <td>{{ row.corp }} </td>
+        <td>{{ row.staff }} </td>
+        <td>{{ row.mail }} </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

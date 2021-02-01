@@ -47,7 +47,8 @@ class SampleController
             'data' => $data,
         ];
         // return rendered object
-        return $this->container->get(Twig::class)->render($response, 'index.phtml', $arg);
+        return $this->container->get(Twig::class)
+            ->render($response, 'index.phtml', $arg);
     }
 
     public function add(Request $request, Response $response, $args) {
@@ -64,7 +65,8 @@ class SampleController
             ]
         ];
 
-        return $this->container->get(Twig::class)->render($response, 'add.phtml', $arg);
+        return $this->container->get(Twig::class)
+            ->render($response, 'add.phtml', $arg);
     }
 
     public function create(Request $request, Response $response, $args) {
@@ -73,7 +75,9 @@ class SampleController
         $rec = $this->atlas->newRecord(Customer::class, $body);
         $this->atlas->insert($rec);
 
-        return $response->withHeader('Location', '/')->withStatus(301);
+        return $response
+            ->withHeader('Location', '/')
+            ->withStatus(301);
     }
 
     public function edit(Request $request, Response $response, $args) {
@@ -86,7 +90,8 @@ class SampleController
             'target' => $target
         ];
 
-        return $this->container->get(Twig::class)->render($response, 'add.phtml', $arg);
+        return $this->container->get(Twig::class)
+            ->render($response, 'add.phtml', $arg);
     }
 
     public function update(Request $request, Response $response, $args) {
@@ -100,7 +105,9 @@ class SampleController
         $target->address = $body['address'];
         $this->atlas->update($target);
 
-        return $response->withHeader('Location', '/')->withStatus(301);
+        return $response
+            ->withHeader('Location', '/')
+            ->withStatus(301);
     }
 
     public function delete(Request $request, Response $response, $args) {
@@ -113,7 +120,8 @@ class SampleController
             'target' => $target
         ];
 
-        return $this->container->get(Twig::class)->render($response, 'add.phtml', $arg);
+        return $this->container->get(Twig::class)
+            ->render($response, 'add.phtml', $arg);
     }
 
     public function destroy(Request $request, Response $response, $args) {
@@ -121,6 +129,40 @@ class SampleController
         $target = $this->atlas->fetchRecord(Customer::class, $id);
         $this->atlas->delete($target);
 
-        return $response->withHeader('Location', '/')->withStatus(301);
+        return $response
+            ->withHeader('Location', '/')
+            ->withStatus(301);
+    }
+
+    public function find(Request $request, Response $response, $args) {
+        $data = $this->atlas
+            ->select(Customer::class)->fetchRecords();
+        $arg = [
+            'header' => 'FInd',
+            'message' => 'find Customer records',
+            'find' => '',
+            'data' => $data
+        ];
+
+        return $this->container->get(Twig::class)
+            ->render($response, 'find.phtml', $arg);
+    }
+
+    public function search(Request $request, Response $response, $args) {
+        $body = $request->getParsedBody();
+        $f = $body['find'];
+        $data = $this->atlas->select(Customer::class)
+            ->where('corp LIKE ', '%' . $f . '%')
+            ->fetchRecords();
+
+        $arg = [
+            'header' => 'Find',
+            'message' => 'find Customer records',
+            'find' => $f,
+            'data' => $data
+        ];
+
+        return $this->container->get(Twig::class)
+            ->render($response, 'find.phtml', $arg);
     }
 }
