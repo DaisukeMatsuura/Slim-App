@@ -165,4 +165,18 @@ class SampleController
         return $this->container->get(Twig::class)
             ->render($response, 'find.phtml', $arg);
     }
+
+    public function order(Request $request, Response $response, $args)
+    {
+        $data = $this->atlas->select(Order::class)
+                    ->with(['customers', 'products'])
+                    ->fetchRecords();
+
+        $args = [
+            'data' => $data
+        ];
+
+        return $this->container->get(Twig::class)
+            ->render($response, 'orders.phtml', $args);
+    }
 }

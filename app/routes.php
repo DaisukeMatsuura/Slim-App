@@ -21,4 +21,5 @@ return function (App $app) {
     $app->post('/delete/{id}', SampleController::class . ':destroy');
     $app->get('/find', SampleController::class . ':find');
     $app->post('/find', SampleController::class . ':search');
+    $app->get('/order', SampleController::class . ':order');
 };

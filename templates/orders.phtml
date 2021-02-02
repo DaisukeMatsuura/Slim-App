@@ -1,0 +1,27 @@
+{% extends 'layout.phtml' %}
+
+{% block title %} Slim {% endblock %}
+{% block header %} Order {% endblock %}
+
+{% block content %}
+<div>Order report.</div>
+<table class="table">
+    <thead>
+    <tr><th>ID</th><th>Product Name</th>
+        <th>Price</th><th>Corp</th>
+        <th>Staff</th><th>Quantity</th></tr>
+    </thead>
+    <tbody>
+    {% for row in data %}
+    <tr>
+        <td>{{ row.id }} </td>
+        <td>{{ row.products[0].name }} </td>
+        <td>{{ row.products[0].price }} </td>
+        <td>{{ row.customers[0].corp }} </td>
+        <td>{{ row.customers[0].staff }} </td>
+        <td>{{ row.quantity }} </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

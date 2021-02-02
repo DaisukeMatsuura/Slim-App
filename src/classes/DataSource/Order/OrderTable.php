@@ -44,6 +44,17 @@ class OrderTable extends Table
             'primary' => false,
             'options' => null,
         ],
+        'customer_id' => [
+            'name' => 'customer_id',
+            'type' => 'int',
+            'size' => 10,
+            'scale' => 0,
+            'notnull' => true,
+            'default' => null,
+            'autoinc' => false,
+            'primary' => false,
+            'options' => null,
+        ],
         'quantity' => [
             'name' => 'quantity',
             'type' => 'int',
@@ -60,12 +71,14 @@ class OrderTable extends Table
     const COLUMN_NAMES = [
         'id',
         'product_id',
+        'customer_id',
         'quantity',
     ];
 
     const COLUMN_DEFAULTS = [
         'id' => null,
         'product_id' => null,
+        'customer_id' => null,
         'quantity' => null,
     ];
 
