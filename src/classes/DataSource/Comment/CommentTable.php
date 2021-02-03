@@ -4,22 +4,22 @@
  */
 declare(strict_types=1);
 
-namespace DataSource\Message;
+namespace DataSource\Comment;
 
 use Atlas\Table\Table;
 
 /**
- * @method MessageRow|null fetchRow($primaryVal)
- * @method MessageRow[] fetchRows(array $primaryVals)
- * @method MessageTableSelect select(array $whereEquals = [])
- * @method MessageRow newRow(array $cols = [])
- * @method MessageRow newSelectedRow(array $cols)
+ * @method CommentRow|null fetchRow($primaryVal)
+ * @method CommentRow[] fetchRows(array $primaryVals)
+ * @method CommentTableSelect select(array $whereEquals = [])
+ * @method CommentRow newRow(array $cols = [])
+ * @method CommentRow newSelectedRow(array $cols)
  */
-class MessageTable extends Table
+class CommentTable extends Table
 {
     const DRIVER = 'mysql';
 
-    const NAME = 'message';
+    const NAME = 'comments';
 
     const COLUMNS = [
         'id' => [

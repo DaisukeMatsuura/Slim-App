@@ -10,6 +10,7 @@ namespace DataSource\Product;
  * @property mixed $id int(10,0) NOT NULL
  * @property mixed $name varchar(50) NOT NULL
  * @property mixed $price int(10,0)
+ * @property null|false|\DataSource\Order\OrderRecord $orders
  */
 trait ProductFields
 {

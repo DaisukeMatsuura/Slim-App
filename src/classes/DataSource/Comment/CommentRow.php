@@ -4,7 +4,9 @@
  */
 declare(strict_types=1);
 
-namespace DataSource\Message;
+namespace DataSource\Comment;
+
+use Atlas\Table\Row;
 
 /**
  * @property mixed $id int(10,0) NOT NULL
@@ -12,6 +14,12 @@ namespace DataSource\Message;
  * @property mixed $article_id int(10,0) NOT NULL
  * @property mixed $message varchar(255) NOT NULL
  */
-trait MessageFields
+class CommentRow extends Row
 {
+    protected $cols = [
+        'id' => null,
+        'user_id' => null,
+        'article_id' => null,
+        'message' => null,
+    ];
 }

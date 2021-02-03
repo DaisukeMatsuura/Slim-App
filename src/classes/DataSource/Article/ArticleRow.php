@@ -4,22 +4,22 @@
  */
 declare(strict_types=1);
 
-namespace DataSource\Message;
+namespace DataSource\Article;
 
 use Atlas\Table\Row;
 
 /**
  * @property mixed $id int(10,0) NOT NULL
  * @property mixed $user_id int(10,0) NOT NULL
- * @property mixed $article_id int(10,0) NOT NULL
- * @property mixed $message varchar(255) NOT NULL
+ * @property mixed $content text(65535) NOT NULL
+ * @property mixed $created timestamp NOT NULL
  */
-class MessageRow extends Row
+class ArticleRow extends Row
 {
     protected $cols = [
         'id' => null,
         'user_id' => null,
-        'article_id' => null,
-        'message' => null,
+        'content' => null,
+        'created' => null,
     ];
 }

@@ -4,22 +4,22 @@
  */
 declare(strict_types=1);
 
-namespace DataSource\Message;
+namespace DataSource\Article;
 
 use Atlas\Table\Table;
 
 /**
- * @method MessageRow|null fetchRow($primaryVal)
- * @method MessageRow[] fetchRows(array $primaryVals)
- * @method MessageTableSelect select(array $whereEquals = [])
- * @method MessageRow newRow(array $cols = [])
- * @method MessageRow newSelectedRow(array $cols)
+ * @method ArticleRow|null fetchRow($primaryVal)
+ * @method ArticleRow[] fetchRows(array $primaryVals)
+ * @method ArticleTableSelect select(array $whereEquals = [])
+ * @method ArticleRow newRow(array $cols = [])
+ * @method ArticleRow newSelectedRow(array $cols)
  */
-class MessageTable extends Table
+class ArticleTable extends Table
 {
     const DRIVER = 'mysql';
 
-    const NAME = 'message';
+    const NAME = 'articles';
 
     const COLUMNS = [
         'id' => [
@@ -44,21 +44,21 @@ class MessageTable extends Table
             'primary' => false,
             'options' => null,
         ],
-        'article_id' => [
-            'name' => 'article_id',
-            'type' => 'int',
-            'size' => 10,
-            'scale' => 0,
+        'content' => [
+            'name' => 'content',
+            'type' => 'text',
+            'size' => 65535,
+            'scale' => null,
             'notnull' => true,
             'default' => null,
             'autoinc' => false,
             'primary' => false,
             'options' => null,
         ],
-        'message' => [
-            'name' => 'message',
-            'type' => 'varchar',
-            'size' => 255,
+        'created' => [
+            'name' => 'created',
+            'type' => 'timestamp',
+            'size' => null,
             'scale' => null,
             'notnull' => true,
             'default' => null,
@@ -71,15 +71,15 @@ class MessageTable extends Table
     const COLUMN_NAMES = [
         'id',
         'user_id',
-        'article_id',
-        'message',
+        'content',
+        'created',
     ];
 
     const COLUMN_DEFAULTS = [
         'id' => null,
         'user_id' => null,
-        'article_id' => null,
-        'message' => null,
+        'content' => null,
+        'created' => null,
     ];
 
     const PRIMARY_KEY = [

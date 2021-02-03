@@ -13,6 +13,7 @@ namespace DataSource\Customer;
  * @property mixed $mail varchar(100)
  * @property mixed $tel varchar(20)
  * @property mixed $address varchar(255)
+ * @property null|false|\DataSource\Order\OrderRecord $orders
  */
 trait CustomerFields
 {

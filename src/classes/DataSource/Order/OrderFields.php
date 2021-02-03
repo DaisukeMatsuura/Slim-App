@@ -11,6 +11,8 @@ namespace DataSource\Order;
  * @property mixed $product_id int(10,0) NOT NULL
  * @property mixed $customer_id int(10,0) NOT NULL
  * @property mixed $quantity int(10,0) NOT NULL
+ * @property null|\DataSource\Customer\CustomerRecordSet $customers
+ * @property null|\DataSource\Product\ProductRecordSet $products
  */
 trait OrderFields
 {
