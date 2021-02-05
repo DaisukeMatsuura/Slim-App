@@ -1,0 +1,61 @@
+{% extends '/boards/layout.phtml' %}
+
+{% block title %} Board {% endblock %}
+{% block header %} Articles {% endblock %}
+
+{% block content %}
+<div class="h6 text-right mt-2 mr-4">
+    logined: <a href="/board/user/{{ user_id }}">{{ username }}</a>
+</div>
+<h2 class="h5 mt-4 mb-4">{{ message }}</h2>
+
+{% if f %}
+<div class="card mt-4 mb-4">
+    <div class="card-header">
+        Article Form:
+    </div>
+    <div class="card-body">
+        <form action="/board/user/{{ user_id }}" method="post">
+            <div class="form-group">
+                <label>Comment</label>
+                <textarea class="form-control" type="text" name="content" rows="7"></textarea>
+            </div>
+            <div><input class="form-control btn-primary" type="submit"></div>
+        </form>
+    </div>
+</div>
+{% endif %}
+<h5 class="mt-5">Posted Articles.</h5>
+<table class="table mt-4 mb-0">
+    <thead>
+    <tr><th>Article</th><th>created</th></tr>
+    </thead>
+    <tbody>
+    {% for row in articles %}
+    <tr>
+        <td><a class="text-dark" href="/board/article/{{ row.id }}">{{ row.content | slice(0, 12) }}...</a></td>
+        <td>{{ row.created }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<hr>
+{% if f %}
+<h5 class="mt-5">Posted Comments.</h5>
+<table class="table mt-4 mb-0">
+    <thead>
+    <tr><th>Comment</th><th>article</th></tr>
+    </thead>
+    <tbody>
+    {% for row in comments %}
+    <tr>
+        <td>{{ row.message }}</td>
+        <td>{{ row.articles.content | slice(0, 12) }}...</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<hr>
+{% endif %}
+<div class="h6 mb-4"><a href="/board">&lt;&lt; go to Top</a></div>
+{% endblock %}

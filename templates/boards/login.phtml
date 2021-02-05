@@ -1,0 +1,21 @@
+{% extends '/boards/layout.phtml' %}
+
+{% block title %} Board {% endblock %}
+{% block header %} Login {% endblock %}
+
+{% block content %}
+<p class="h5">{{ message }}</p>
+<form action="/board/login" method="post">
+    <div class="form-group">
+        <label>Username</label>
+        <input type="text" name="username" class="form-control" value="{{ user.username }}">
+    </div>
+    <div class="form-group">
+        <label>Password</label>
+        <input type="password" name="password" class="form-control" >
+    </div>
+    <div>
+        <input type="submit" class="form-control btn-primary">
+    </div>
+</form>
+{% endblock %}

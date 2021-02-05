@@ -1,0 +1,25 @@
+{% extends '/boards/layout.phtml' %}
+
+{% block title %} Board {% endblock %}
+{% block header %} Board {% endblock %}
+
+{% block content %}
+<div class="h6 text-right mt-2 mr-4">
+    logined: <a href="/board/user/{{ user_id }}">{{ username }}</a>
+</div>
+<h2 class="h5 mt-4 mb-4">Article Board.</h2>
+<table class="table">
+    <thead>
+    <tr><th>Content</th><th>username</th><th>created</th></tr>
+    </thead>
+    <tbody>
+    {% for row in data %}
+    <tr>
+        <td><a href="/board/article/{{ row.id }}" class="text-dark">{{ row.content | slice(0, 12) }}...</a></td>
+        <td><a href="/board/user/{{ row.users.id }}" class="text-dark">{{ row.users.username }}</a></td>
+        <td>{{ row.created | date('y-m-d h:i') }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
